@@ -1,6 +1,6 @@
 PROJECT_NAME           = Miniscons
 PROJECT_BRIEF          = SCons builders.
-PROJECT_NUMBER         = 0.1.0
+PROJECT_NUMBER         = 0.0.0
 
 INPUT                  = src docs README.md
 USE_MDFILE_AS_MAINPAGE = README.md

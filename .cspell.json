@@ -18,6 +18,7 @@
     "autoflake",
     "bumpversion",
     "codacy",
+    "doxyfile",
     "lefkowitz",
     "miniscons",
     "scons",
