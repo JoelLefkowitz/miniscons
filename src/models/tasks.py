@@ -1,15 +1,15 @@
 import sys
-from .build import Build
-from .flag import Flag
-from .routine import Routine
-from .script import Script
-from .target import Target
+from .builds.build import Build
+from .scripts.flag import Flag
+from .scripts.routine import Routine
+from .scripts.script import Script
+from .builds.target import Target
 from dataclasses import dataclass, field
 from SCons.Environment import Environment
 
 
 @dataclass
-class CLI:
+class Tasks:
     builds: list[Build]
 
     targets: list[Target] = field(default_factory=list)
@@ -18,15 +18,19 @@ class CLI:
     flags: list[Flag] = field(default_factory=list)
 
     def __str__(self) -> str:
-        return "\n\n".join(
+        fields = "\n\n".join(
             [
-                ":".join([k, "".join([f"\n  {i}" for i in v])])
+                ":".join(
+                    [k, "".join([f"\n  {i}" for i in v] if len(v) > 0 else "\n  -")]
+                )
                 for k, v in self.__dict__.items()
             ]
         )
 
+        return f"\n{fields}\n"
+
     def dump(self) -> None:
-        sys.stdout.write(f"{self}\n\n")
+        sys.stdout.write(f"{self}\n")
 
     def register(self, env: Environment) -> None:
         for group in self.__dict__.values():
