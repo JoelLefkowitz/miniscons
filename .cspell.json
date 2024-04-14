@@ -21,6 +21,9 @@
     "lefkowitz",
     "miniscons",
     "scons",
+    "pypa",
+    "mdfile",
+    "stylesheet",
     "trufflehog"
   ]
 }

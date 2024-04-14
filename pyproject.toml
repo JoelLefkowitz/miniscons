@@ -7,7 +7,7 @@ name = "miniscons"
 description = "SCons builders."
 version = "0.1.0"
 
-keywords = ["scons"]
+keywords = ["SCons", "SConstruct", "builders"]
 
 classifiers = [
     "License :: OSI Approved :: MIT License",
@@ -24,6 +24,7 @@ dependencies = ["SCons==4.3.0"]
 all = [
     "autoflake==1.4",
     "black==22.3.0",
+    "build==1.2.1",
     "bump2version==1.0.1",
     "isort==5.10.1",
     "mypy==0.961",
@@ -33,18 +34,27 @@ all = [
     "twine==5.0.0",
 ]
 
+[project.license]
+file = "LICENSE.md"
+content-type = "text/markdown"
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://github.com/JoelLefkowitz/miniscons"
+
 [[project.authors]]
 name = "Joel Lefkowitz"
 email = "joellefkowitz@hotmail.com"
 
-[project.license]
-file = "LICENSE.md"
-
-[project.readme]
-file = "README.md"
-
-[project.urls]
-Homepage = "https://github.com/JoelLefkowitz/miniscons"
+[project.metadata]
+publisher = "PyPI"
+languages = ["Python"]
+frameworks = ["SCons"]
+paradigms = ["Object oriented"]
+lifecycle = "Alpha"
 
 [tool.hatch.build.targets.sdist]
 include = ["src/*.py"]
@@ -55,13 +65,19 @@ packages = ["src"]
 [tool.hatch.build.targets.wheel.sources]
 src = "miniscons"
 
-[tool.thx.jobs]
-format = ["black . ", "isort . --no-sections", "npx prettier . --write"]
 
+[tool.thx.jobs]
 lint = [
     "npx cspell . --dot",
     "pylint src --disable=C0114,C0115,C0116,C0411",
     "mypy -m src --ignore-missing-import",
 ]
 
-test = ["pytest . --doctest-modules --cov --cov-report=lcov"]
+format = [
+    "black .",
+    "isort . --no-sections --remove-redundant-aliases",
+    "npx prettier . --write",
+]
+
+test = "pytest . --doctest-modules --cov --cov-report=lcov"
+docs = "doxygen"
