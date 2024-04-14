@@ -15,8 +15,10 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/install
 
-      - name: Build
+      - name: Build the package
         run: python -m build
 
-      - name: Publish
+      - name: Publish the package
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          token: ${{ secrets.PYPI_TOKEN }}
