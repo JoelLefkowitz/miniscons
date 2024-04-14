@@ -81,5 +81,5 @@ format = [
     "npx prettier . --write",
 ]
 
-test = "pytest . --doctest-modules --cov --cov-report=lcov"
+test = "pytest . --doctest-modules --cov --cov-report=json"
 docs = "doxygen"
