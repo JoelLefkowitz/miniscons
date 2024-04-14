@@ -4,8 +4,12 @@
     "languages": [
       "Python"
     ],
-    "frameworks": [],
-    "paradigms": [],
+    "frameworks": [
+      "SCons"
+    ],
+    "paradigms": [
+      "Object oriented"
+    ],
     "lifecycle": "Alpha"
   },
   "scripts": {

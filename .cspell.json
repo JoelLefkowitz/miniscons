@@ -1,0 +1,26 @@
+{
+  "language": "en",
+  "ignorePaths": [
+    ".git",
+    ".gitignore",
+    ".husky",
+    "coverage.*",
+    ".coverage",
+    ".mypy_cache",
+    "__pycache__",
+    "dist",
+    "docs/*.css",
+    "venv",
+    "yarn-error.log"
+  ],
+  "dictionaries": ["bash", "en-gb", "misc", "node", "softwareTerms", "python"],
+  "words": [
+    "autoflake",
+    "bumpversion",
+    "codacy",
+    "lefkowitz",
+    "miniscons",
+    "scons",
+    "trufflehog"
+  ]
+}

@@ -1,8 +1,14 @@
 node_modules/
 venv/
 
+__pycache__
+.mypy_cache
+
 build/
 dist/
+
+coverage.*
+.coverage
 
 *.egg-info/
 *.o
