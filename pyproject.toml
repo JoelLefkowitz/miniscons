@@ -32,6 +32,7 @@ all = [
     "pytest==7.1.2",
     "trufflehog3==3.0.7",
     "twine==5.0.0",
+    "thx==0.5.1",
 ]
 
 [project.license]
