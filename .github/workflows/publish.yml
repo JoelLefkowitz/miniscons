@@ -12,6 +12,10 @@ jobs:
     permissions:
       id-token: write
 
+    environment:
+      name: pypi
+      url: https://pypi.org/p/miniscons
+
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v4
@@ -23,7 +27,4 @@ jobs:
         run: python -m build
 
       - name: Publish the package
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_TOKEN }}
-        
+        uses: pypa/gh-action-pypi-publish@release/v1  
