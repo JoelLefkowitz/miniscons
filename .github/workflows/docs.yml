@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Install dependencies
         uses: ./.github/actions/install
@@ -40,7 +40,7 @@ jobs:
     needs: build
 
     environment:
-      name: github-pages
+      name: Pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
