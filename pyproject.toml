@@ -38,7 +38,6 @@ all = [
 
 [project.license]
 file = "LICENSE.md"
-content-type = "text/markdown"
 
 [project.readme]
 file = "README.md"
@@ -51,7 +50,7 @@ Homepage = "https://github.com/JoelLefkowitz/miniscons"
 name = "Joel Lefkowitz"
 email = "joellefkowitz@hotmail.com"
 
-[project.metadata]
+[tool.promoter.metadata]
 publisher = "PyPI"
 languages = ["Python"]
 frameworks = ["SCons"]
@@ -59,14 +58,13 @@ paradigms = ["Object oriented"]
 lifecycle = "Alpha"
 
 [tool.hatch.build.targets.sdist]
-include = ["src/*.py"]
+include = ["src/**/*.py"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
 
 [tool.hatch.build.targets.wheel.sources]
 src = "miniscons"
-
 
 [tool.thx.jobs]
 lint = [
