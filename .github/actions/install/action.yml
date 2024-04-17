@@ -10,7 +10,7 @@ runs:
   using: composite
   steps:
     - name: Checkout the source code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set the python version
       uses: actions/setup-python@v5
@@ -18,6 +18,10 @@ runs:
         python-version: ${{ inputs.python-version }}
         cache: pip
 
-    - name: Install python dependencies
+    - name: Install pip dependencies
       shell: bash
       run: pip install .[all]
+
+    - name: Install apt dependencies
+      shell: bash
+      run: sudo apt-get install -y doxygen
