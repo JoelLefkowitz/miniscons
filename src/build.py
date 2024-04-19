@@ -22,7 +22,9 @@ class Build:
     def nodes(self, env: Environment) -> list[str]:
         return [
             env.Object(
-                f"{file.replace('.', '-')}-{self.name}", file, CXXFLAGS=self.flags
+                f"{os.path.normpath(file).replace('.', '-')}-{self.name}",
+                file,
+                CXXFLAGS=self.flags,
             )
             for file in self.files
         ]
