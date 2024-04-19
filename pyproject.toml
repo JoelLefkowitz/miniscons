@@ -69,7 +69,7 @@ src = "miniscons"
 [tool.thx.jobs]
 lint = [
     "npx cspell . --dot",
-    "pylint src --disable=C0114,C0115,C0116,C0411",
+    "pylint src --disable=C0114,C0115,C0116,C0411,C3001",
     "mypy -m src --ignore-missing-import",
 ]
 

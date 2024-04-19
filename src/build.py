@@ -1,14 +1,14 @@
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from SCons.Environment import Environment
 
 
 @dataclass
 class Build:
     name: str
-    files: list[str]
 
-    shared: bool = False
+    files: list[str] = field(default_factory=list)
+    flags: list[str] = field(default_factory=list)
     output: str = "dist"
 
     def __repr__(self) -> str:
@@ -19,5 +19,5 @@ class Build:
         return os.path.join(self.output, self.name)
 
     def register(self, env: Environment) -> None:
-        env.Program(self.target, source=self.files)
+        env.Program(self.target, source=self.files, CXXFLAGS=self.flags)
         env.Alias(self.name, self.target)

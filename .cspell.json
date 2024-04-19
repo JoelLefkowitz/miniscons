@@ -18,13 +18,17 @@
     "autoflake",
     "bumpversion",
     "codacy",
+    "cppcheck",
+    "cxxflags",
     "doxyfile",
+    "gtest",
     "lefkowitz",
-    "miniscons",
-    "scons",
-    "pypa",
     "mdfile",
+    "miniscons",
+    "pypa",
+    "scons",
     "stylesheet",
-    "trufflehog"
+    "trufflehog",
+    "werror"
   ]
 }

@@ -1,12 +1,12 @@
 from .script import Script
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from SCons.Environment import Environment
 
 
 @dataclass
 class Routine:
     name: str
-    scripts: list[Script]
+    scripts: list[Script] = field(default_factory=list)
 
     def __repr__(self) -> str:
         return f"{self.name} -> {self.scripts}"
