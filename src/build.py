@@ -18,6 +18,11 @@ class Build:
     def target(self) -> str:
         return os.path.join(self.output, self.name)
 
+    def node(self, file: str, env: Environment) -> str:
+        return env.Object(
+            f"{self.name}-{file.replace('.', '-')}", file, CXXFLAGS=self.flags
+        )
+
     def register(self, env: Environment) -> None:
-        env.Program(self.target, source=self.files, CXXFLAGS=self.flags)
+        env.Program(self.target, [self.node(file, env) for file in self.files])
         env.Alias(self.name, self.target)
