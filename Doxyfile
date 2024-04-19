@@ -1,5 +1,5 @@
 PROJECT_NAME = Miniscons
-PROJECT_NUMBER = 0.7.2
+PROJECT_NUMBER = 0.7.3
 PROJECT_BRIEF = SCons builders.
 
 INPUT = src docs README.md
