@@ -7,8 +7,3 @@ def test_flags():
         "-Werror",
         "-Wno-shadow",
     ]
-
-    assert flags("c++11", shared=True) == [
-        "-std=c++11",
-        "-shared",
-    ]

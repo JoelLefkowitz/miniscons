@@ -2,10 +2,7 @@ from .containers import flatten
 
 
 def flags(
-    standard: str,
-    warnings: list[str] | None = None,
-    ignore: list[str] | None = None,
-    shared: bool = False,
+    standard: str, warnings: list[str] | None = None, ignore: list[str] | None = None
 ) -> list[str]:
     if warnings is None:
         warnings = []
@@ -16,7 +13,6 @@ def flags(
     return flatten(
         [
             f"-std={standard}",
-            ["-shared"] if shared else [],
             [f"-W{warning}" for warning in warnings],
             [f"-Wno-{warning}" for warning in ignore],
         ]
