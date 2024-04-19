@@ -15,6 +15,8 @@ def conan(libs: list[str], path: str = "SConscript_conandeps") -> Environment:
         conandeps,
     )
 
+    environment["LIBS"] = libs
+
     return Environment(
         **environment,
         ENV={"PATH": os.getenv("PATH", "")},
