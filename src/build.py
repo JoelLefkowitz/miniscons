@@ -20,7 +20,7 @@ class Build:
 
     def node(self, file: str, env: Environment) -> str:
         return env.Object(
-            f"{self.name}-{file.replace('.', '-')}", file, CXXFLAGS=self.flags
+            f"{file.replace('.', '-')}-{self.name}", file, CXXFLAGS=self.flags
         )
 
     def register(self, env: Environment) -> None:
