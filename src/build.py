@@ -29,7 +29,8 @@ class Build:
 
     def register(self, env: Environment) -> None:
         if self.shared:
-            env.Library(self.target, self.nodes(env))
+            outputs = env.Library(self.target, self.nodes(env))
+            env.Alias(self.name, outputs[0])
         else:
             env.Program(self.target, self.nodes(env))
             env.Alias(self.name, self.target)
