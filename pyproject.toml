@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 requires-python = ">=3.8"
-dependencies = ["SCons==4.3.0"]
+dependencies = ["psutil==5.9.1", "SCons==4.3.0"]
 
 [project.optional-dependencies]
 all = [
@@ -71,7 +71,7 @@ lint = [
     "npx cspell . --dot",
     "pylint src --disable=C0114,C0115,C0116,C0411,C3001",
     "mypy -m src --ignore-missing-import",
-    "trufflehog3"
+    "trufflehog3",
 ]
 
 format = [
