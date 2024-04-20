@@ -15,5 +15,6 @@ exclude:
       - .mypy_cache
       - .pytest_cache
       - .thx
+      - docs/dist
       - yarn-error.log
       - yarn.lock
