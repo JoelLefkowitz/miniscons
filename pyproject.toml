@@ -71,6 +71,7 @@ lint = [
     "npx cspell . --dot",
     "pylint src --disable=C0114,C0115,C0116,C0411,C3001",
     "mypy -m src --ignore-missing-import",
+    "trufflehog3"
 ]
 
 format = [
@@ -81,3 +82,9 @@ format = [
 
 test = "pytest . --doctest-modules --cov --cov-report=xml"
 docs = "doxygen"
+
+[tool.coverage.run]
+data_file = "coverage/.coverage"
+
+[tool.coverage.xml]
+output = "coverage/cobertura.xml"
