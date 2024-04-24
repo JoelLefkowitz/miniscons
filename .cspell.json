@@ -35,6 +35,7 @@
     "codacy",
     "conandeps",
     "cppcheck",
+    "cppclean",
     "cppdefines",
     "cpppath",
     "cxxcomstr",
