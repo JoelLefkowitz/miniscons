@@ -9,6 +9,8 @@ class Build:
 
     files: list[str] = field(default_factory=list)
     flags: list[str] = field(default_factory=list)
+    libs: list[str] = field(default_factory=list)
+
     output: str = "dist"
     shared: bool = False
 
@@ -19,20 +21,22 @@ class Build:
     def target(self) -> str:
         return os.path.join(self.output, self.name)
 
+    def path(self, file: str) -> str:
+        root = os.path.splitext(os.path.normpath(file))[0]
+        return f"{root.replace('.', '-')}-[{self.name}]"
+
     def nodes(self, env: Environment) -> list[str]:
         return [
-            env.Object(
-                f"{os.path.normpath(file).replace('.', '-')}-{self.name}",
-                file,
-                CXXFLAGS=self.flags,
-            )
+            env.Object(self.path(file), file, CXXFLAGS=self.flags)
             for file in self.files
         ]
 
     def register(self, env: Environment) -> None:
+        libs = env["LIBS"] + self.libs
+
         if self.shared:
-            outputs = env.Library(self.target, self.nodes(env))
+            outputs = env.Library(self.target, self.nodes(env), LIBS=libs)
             env.Alias(self.name, outputs[0])
         else:
-            env.Program(self.target, self.nodes(env))
+            env.Program(self.target, self.nodes(env), LIBS=libs)
             env.Alias(self.name, self.target)
