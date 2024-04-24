@@ -13,7 +13,7 @@ SCons builders.
 
 When writing an `SConstruct.py` configuration it is difficult to:
 
-- Specify libraries and warnings for each build since the default environment is global.
+- Specify libraries and warnings for each build since the default environment is global
 - Declare executable targets that depend on builds and don't need to be built themselves
 - Parse outputs from `conan` to get include paths for build dependencies since they don't appear in the exported `conandeps`
 - Declare and chain together aliases for external scripts
