@@ -58,7 +58,7 @@ def build(app, build):
 
     pattern = re.compile(r"src(?!\=)")
 
-    for file in tree("docs/dist", r"\.html") + ["docs/dist/searchindex.js"]:
+    for file in [*tree("docs/dist", r"\.html"), "docs/dist/searchindex.js"]:
         with open(file, "r") as stream:
             text = pattern.sub(package, stream.read())
 

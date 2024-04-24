@@ -19,7 +19,8 @@
   width: 300px;
 }
 
-section#documentation .footnote-list.brackets {
+section#documentation,
+.footnote-list.brackets {
   display: none;
 }
 
