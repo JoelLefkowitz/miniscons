@@ -6,11 +6,8 @@ from glob import glob
 from walkmate import tree
 
 project = "Miniscons"
-version = "0.9.0"
-
 package = "miniscons"
-primary = "#4165FF"
-secondary = "#914FF5"
+version = "0.9.0"
 
 project_copyright = f"{date.today().year} Joel Lefkowitz"
 
@@ -23,12 +20,20 @@ extensions = [
 autoapi_dirs = ["../../src"]
 autoapi_options = [
     "members",
-    "undoc-members",
     "private-members",
     "show-inheritance",
+    "undoc-members",
 ]
 
 myst_all_links_external = True
+
+theme = {
+    "color-problematic": "#4165FF",
+    "color-brand-content": "#4165FF",
+    "color-brand-primary": "#914FF5",
+    "font-stack": "Space Grotesk, sans-serif",
+    "font-stack--monospace": "CQ Mono, monospace",
+}
 
 html_theme = "furo"
 html_title = project
@@ -36,25 +41,18 @@ html_static_path = [""]
 html_js_files = ["scripts.js"]
 html_css_files = ["styles.css"]
 html_theme_options = {
-    "font-stack": "Space Grotesk, sans-serif",
-    "font-stack--monospace": "CQ Mono, monospace",
     "light_css_variables": {
-        "color-brand-content": primary,
-        "color-problematic": primary,
-        "color-brand-primary": secondary,
+        **theme,
         "color-highlight-on-target": "#E0E0E0",
     },
     "dark_css_variables": {
-        "color-problematic": primary,
-        "color-brand-content": primary,
-        "color-brand-primary": secondary,
+        **theme,
         "color-highlight-on-target": "#202020",
     },
 }
 
 
 def build(app, build):
-
     shutil.copytree("docs/images", "docs/dist/docs/images", dirs_exist_ok=True)
     shutil.move("docs/dist/autoapi/src", f"docs/dist/autoapi/{package}")
 

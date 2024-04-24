@@ -19,7 +19,7 @@
   width: 300px;
 }
 
-section#documentation {
+section#documentation .footnote-list.brackets {
   display: none;
 }
 
