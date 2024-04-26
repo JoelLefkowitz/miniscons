@@ -1,4 +1,5 @@
 {
+  "language": "en",
   "dictionaries": [
     "aws",
     "bash",
@@ -7,25 +8,7 @@
     "misc",
     "softwareTerms"
   ],
-  "ignorePaths": [
-    "__pycache__",
-    ".DS_Store",
-    ".git",
-    ".gitignore",
-    ".husky",
-    ".mypy_cache",
-    ".pytest_cache",
-    ".thx",
-    ".yarn",
-    "*.egg-info",
-    "coverage",
-    "dist",
-    "docs/*.css",
-    "node_modules",
-    "venv",
-    "yarn-error.log"
-  ],
-  "language": "en",
+  "ignorePaths": [".git"],
   "words": [
     "autoapi",
     "autoflake",
@@ -38,11 +21,11 @@
     "cppclean",
     "cppdefines",
     "cpppath",
+    "cpppaths",
     "cxxcomstr",
     "cxxflags",
     "debugpy",
     "doctest",
-    "doxyfile",
     "emojize",
     "furo",
     "giphy",
@@ -50,10 +33,9 @@
     "gtest",
     "isort",
     "lefkowitz",
+    "libpaths",
     "linkcomstr",
-    "mainpage",
     "matplotlib",
-    "mdfile",
     "miniscons",
     "mypy",
     "opengraph",
@@ -66,16 +48,13 @@
     "pytest",
     "scons",
     "sdist",
-    "searchengine",
     "searchindex",
     "sphinxext",
-    "stylesheet",
     "toctree",
-    "treeview",
     "trufflehog",
     "undoc",
     "venv",
-    "walkmate",
-    "werror"
+    "werror",
+    "walkmate"
   ]
 }

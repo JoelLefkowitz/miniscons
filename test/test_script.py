@@ -6,4 +6,4 @@ def test_action():
     assert clang_format.action == "clang-format -i main.cpp main.hpp"
 
     cspell = Script("cspell", [".", "--dot"], ["npx"])
-    assert cspell.action == "npx cspell . --dot"
+    assert cspell.action == "npx cspell . --dot --gitignore"

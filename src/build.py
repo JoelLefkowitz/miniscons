@@ -32,6 +32,8 @@ class Build:
         ]
 
     def register(self, env: Environment) -> None:
+        # TODO: Include the CPPPATHS and LIBPATHS too:
+        # TODO: Make this conan-agnostic too:
         libs = env["LIBS"] + self.libs
 
         if self.shared:

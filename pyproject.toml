@@ -54,8 +54,8 @@ file = "README.md"
 content-type = "text/markdown"
 
 [project.urls]
-homepage = "https://joellefkowitz.github.io/miniscons"
 repository = "https://github.com/JoelLefkowitz/miniscons"
+homepage = "https://joellefkowitz.github.io/miniscons"
 
 [[project.authors]]
 name = "Joel Lefkowitz"
@@ -79,7 +79,7 @@ src = "miniscons"
 
 [tool.thx.jobs]
 lint = [
-    "npx cspell . --dot",
+    "npx cspell . --dot --gitignore",
     "pylint src --disable=C0114,C0115,C0116,C0411,C3001",
     "mypy -m src --ignore-missing-import",
     "trufflehog3",

@@ -8,7 +8,6 @@ SCons builders.
 ![Quality](https://img.shields.io/codacy/grade/97f4a968fe554186b58c2f49903a09f4)
 ![Coverage](https://img.shields.io/codacy/coverage/97f4a968fe554186b58c2f49903a09f4)
 
-
 ## Motivation
 
 When writing an `SConstruct.py` configuration it is difficult to:
@@ -136,7 +135,7 @@ if GetOption("dump"):
 
 Now if we run
 
-```sh
+```bash
 scons --dump
 ```
 
@@ -171,6 +170,14 @@ Why not use a simple task runner for scripts and routines?
 Some scripts need access to the include paths that appear in the `SConstruct.py` file so they need to be integrated into the scons workflow.
 
 ## Tooling
+
+### Dependencies
+
+To install dependencies:
+
+```bash
+pip install .[all]
+```
 
 ### Tests
 
@@ -224,8 +231,8 @@ bump2version patch
 
 Lots of love to the open source community!
 
-<p align='center'>
+<div align='center'>
     <img width=200 height=200 src='https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif' alt='Be kind to your mind' />
     <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
     <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
-</p>
+</div>
