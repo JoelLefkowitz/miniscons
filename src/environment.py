@@ -6,30 +6,43 @@ from SCons.Script import SConscript
 
 
 def conan(
-    path: str = "SConscript_conandeps", defines: list[str] | None = None
+    defines: list[str] | None = None,
+    source: str = "SConscript_conandeps",
 ) -> tuple[Environment, list[str]]:
     if defines is None:
         defines = []
 
-    exported = SConscript(path)
-
-    conandeps = exported["conandeps"]
-    conandeps["CPPDEFINES"].extend(defines)
-
     env = Environment(
-        **conandeps,
+        num_jobs=psutil.cpu_count(),
+        ENV={"PATH": os.getenv("PATH", "")},
         CXXCOMSTR=emojize(":wrench: Compiling $TARGET"),
         LINKCOMSTR=emojize(":link: Linking $TARGET"),
-        ENV={"PATH": os.getenv("PATH", "")},
-        num_jobs=psutil.cpu_count(),
     )
 
-    # TODO: Create a separate function to provide all the include and lib paths
-    includes = [
-        include
-        for dependency in exported.values()
-        if isinstance(dependency, dict)
-        for include in dependency["CPPPATH"]
-    ]
+    conandeps = SConscript(source)["conandeps"]
+    conandeps["CPPDEFINES"] += defines
 
-    return (env, includes)
+    env.MergeFlags(conandeps)
+    return env
+
+
+def packages(
+    names: list[str],
+    libs: list[str] | None = None,
+    explicit: bool = False,
+    source: str = "SConscript_conandeps",
+) -> dict[str, list[str]]:
+    if libs is None:
+        libs = names.copy()
+
+    if not explicit:
+        names.append("conandeps")
+
+    reduced = {"LIBS": libs}
+
+    for name, package in SConscript(source).items():
+        if name in names:
+            for flag, exported in package.items():
+                reduced[flag] = reduced.get(flag, []) + exported
+
+    return reduced

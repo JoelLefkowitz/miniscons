@@ -18,16 +18,12 @@ class Tasks:
 
     @property
     def cli(self) -> str:
-        fields = "\n\n".join(
-            [
-                ":".join(
-                    [k, "".join([f"\n  {i}" for i in v] if len(v) > 0 else "\n  -")]
-                )
-                for k, v in self.__dict__.items()
-            ]
-        )
+        sections = [
+            ":".join([k, "".join([f"\n  {i}" for i in v] if len(v) > 0 else "\n  -")])
+            for k, v in self.__dict__.items()
+        ]
 
-        return f"\n{fields}\n"
+        return "".join(["\n", "\n\n".join(sections), "\n"])
 
     def dump(self) -> None:
         sys.stdout.write(f"{self.cli}\n")

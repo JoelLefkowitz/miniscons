@@ -9,7 +9,8 @@ class Build:
 
     files: list[str] = field(default_factory=list)
     flags: list[str] = field(default_factory=list)
-    libs: list[str] = field(default_factory=list)
+
+    packages: dict[str, list[str]] = field(default_factory=dict)
 
     output: str = "dist"
     shared: bool = False
@@ -21,24 +22,23 @@ class Build:
     def target(self) -> str:
         return os.path.join(self.output, self.name)
 
+    @property
+    def merge(self) -> dict[str, list[str]]:
+        packages = self.packages.copy()
+        packages["CXXFLAGS"] = packages.get("CXXFLAGS", []) + self.flags
+        return packages
+
     def path(self, file: str) -> str:
         root = os.path.splitext(os.path.normpath(file))[0]
         return f"{root.replace('.', '-')}-[{self.name}]"
 
     def nodes(self, env: Environment) -> list[str]:
-        return [
-            env.Object(self.path(file), file, CXXFLAGS=self.flags)
-            for file in self.files
-        ]
+        return [env.Object(self.path(file), file, **self.merge) for file in self.files]
 
     def register(self, env: Environment) -> None:
-        # TODO: Include the CPPPATHS and LIBPATHS too:
-        # TODO: Make this conan-agnostic too:
-        libs = env["LIBS"] + self.libs
-
         if self.shared:
-            outputs = env.Library(self.target, self.nodes(env), LIBS=libs)
+            outputs = env.Library(self.target, self.nodes(env), **self.merge)
             env.Alias(self.name, outputs[0])
         else:
-            env.Program(self.target, self.nodes(env), LIBS=libs)
+            env.Program(self.target, self.nodes(env), **self.merge)
             env.Alias(self.name, self.target)

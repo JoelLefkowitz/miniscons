@@ -56,18 +56,18 @@ Parse the `SConscript_conandeps` if you are using `conan`:
 ```py
 from miniscons import conan
 
-env, includes = conan()
+env = conan()
 ```
 
 Add the builds with their specific warning flags and libs to include:
 
 ```py
-from miniscons import Build, flags
+from miniscons import Build, flags, packages
 from walkmate import tree
 
 build = Build(
     "build",
-    tree("src", r"\.cpp$", ["main.cpp"]),
+    tree("src", r"(?<!\.spec)\.cpp$"),
     flags("c++11", ["shadow"]),
 )
 
@@ -75,7 +75,7 @@ tests = Build(
     "tests",
     tree("src", r"\.cpp$", ["main.cpp"]),
     flags("c++11"),
-    ["gtest"],
+    packages(["gtest"]),
 )
 ```
 
@@ -96,6 +96,8 @@ from miniscons import Script
 from walkmate import tree
 
 cppclean = Script("cppclean", ["."])
+
+includes = tests.packages["CPPPATH"]
 
 tidy = Script(
     "clang-tidy",
