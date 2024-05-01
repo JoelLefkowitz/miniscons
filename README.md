@@ -178,6 +178,7 @@ Some scripts need access to the include paths that appear in the `SConstruct.py`
 To install dependencies:
 
 ```bash
+yarn install
 pip install .[all]
 ```
 

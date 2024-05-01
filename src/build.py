@@ -15,12 +15,14 @@ class Build:
     output: str = "dist"
     shared: bool = False
 
+    rename: str | None = None
+
     def __repr__(self) -> str:
         return self.name
 
     @property
     def target(self) -> str:
-        return os.path.join(self.output, self.name)
+        return os.path.join(self.output, self.rename if self.rename else self.name)
 
     @property
     def merge(self) -> dict[str, list[str]]:
