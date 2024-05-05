@@ -1,4 +1,6 @@
 import os
+from .constants import SCONS_FLAGS
+from .containers import unique
 from dataclasses import dataclass, field
 from SCons.Environment import Environment
 
@@ -24,23 +26,25 @@ class Build:
     def target(self) -> str:
         return os.path.join(self.output, self.rename if self.rename else self.name)
 
-    @property
-    def merge(self) -> dict[str, list[str]]:
-        packages = self.packages.copy()
-        packages["CXXFLAGS"] = packages.get("CXXFLAGS", []) + self.flags
-        return packages
-
     def path(self, file: str) -> str:
         root = os.path.splitext(os.path.normpath(file))[0]
         return f"{root.replace('.', '-')}-[{self.name}]"
 
-    def nodes(self, env: Environment) -> list[str]:
-        return [env.Object(self.path(file), file, **self.merge) for file in self.files]
+    def merge(self, env: Environment) -> dict[str, list[str]]:
+        merged = {k: unique(env[k] + self.packages.get(k, [])) for k in SCONS_FLAGS}
+        merged["CXXFLAGS"] += self.flags
+        return merged
+
+    def nodes(self, env: Environment, merged: dict[str, list[str]]) -> list[str]:
+        return [env.Object(self.path(file), file, **merged) for file in self.files]
 
     def register(self, env: Environment) -> None:
+        merged = self.merge(env)
+        nodes = self.nodes(env, merged)
+
         if self.shared:
-            outputs = env.Library(self.target, self.nodes(env), **self.merge)
+            outputs = env.Library(self.target, nodes, **merged)
             env.Alias(self.name, outputs[0])
         else:
-            env.Program(self.target, self.nodes(env), **self.merge)
+            env.Program(self.target, nodes, **merged)
             env.Alias(self.name, self.target)

@@ -1,5 +1,6 @@
 import os
 import psutil
+from .constants import SCONS_FLAGS
 from emoji import emojize
 from SCons.Environment import Environment
 from SCons.Script import SConscript
@@ -42,7 +43,7 @@ def packages(
 
     for name, package in SConscript(source).items():
         if name in names:
-            for flag, exported in package.items():
-                reduced[flag] = reduced.get(flag, []) + exported
+            for flag in SCONS_FLAGS:
+                reduced[flag] = reduced.get(flag, []) + package.get(flag, [])
 
     return reduced
