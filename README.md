@@ -34,7 +34,7 @@ routines: lint -> [clang-tidy, cppclean]
 flags: --dump
 ```
 
-## Installation
+## Installing
 
 ```bash
 pip install miniscons
