@@ -5,6 +5,7 @@ __pycache__/
 .thx/
 .yarn/
 *.egg-info/
+*.excalidraw
 coverage/
 dist/
 node_modules/

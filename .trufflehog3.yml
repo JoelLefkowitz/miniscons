@@ -9,6 +9,7 @@ exclude:
   - message: Dependencies
     paths:
       - node_modules
+      - venv
 
   - message: Tooling outputs
     paths:
@@ -16,5 +17,6 @@ exclude:
       - .pytest_cache
       - .thx
       - docs/dist
+      - package-lock.json
       - yarn-error.log
       - yarn.lock

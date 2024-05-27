@@ -59,10 +59,10 @@ def build(app, build):
     pattern = re.compile(r"src(?!\=)")
 
     for file in [*tree("docs/dist", r"\.html"), "docs/dist/searchindex.js"]:
-        with open(file, "r") as stream:
+        with open(file, "r", encoding="utf8") as stream:
             text = pattern.sub(package, stream.read())
 
-        with open(file, "w") as stream:
+        with open(file, "w", encoding="utf8") as stream:
             stream.write(text)
 
     for path in glob(f"*.md"):

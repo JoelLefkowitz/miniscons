@@ -19,24 +19,19 @@ When writing an `SConstruct.py` configuration it is difficult to:
 
 We can use `miniscons` to keep the `SConstruct.py` file short and get an interface like this:
 
-```
-builds:
-  build
+```yml
+builds: build
   tests
 
-targets:
-  start -> build
+targets: start -> build
   test -> tests
 
-scripts:
-  clang-tidy
+scripts: clang-tidy
   cppclean
 
-routines:
-  lint -> [clang-tidy, cppclean]
+routines: lint -> [clang-tidy, cppclean]
 
-flags:
-  --dump
+flags: --dump
 ```
 
 ## Installation
@@ -143,26 +138,21 @@ scons --dump
 
 We get our interface:
 
-```
+```yml
 scons: Reading SConscript files ...
 
-builds:
-  build
+builds: build
   tests
 
-targets:
-  start -> build
+targets: start -> build
   test -> tests
 
-scripts:
-  clang-tidy
+scripts: clang-tidy
   cppclean
 
-routines:
-  lint -> [clang-tidy, cppclean]
+routines: lint -> [clang-tidy, cppclean]
 
-flags:
-  --dump
+flags: --dump
 ```
 
 ## Discussion

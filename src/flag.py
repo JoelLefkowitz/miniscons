@@ -10,6 +10,5 @@ class Flag:
     def __repr__(self) -> str:
         return self.name
 
-    # pylint: disable=W0613
-    def register(self, env: Environment) -> None:
+    def register(self, _: Environment) -> None:
         AddOption(self.name, action="store_true")
