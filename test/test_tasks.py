@@ -29,6 +29,6 @@ def test_cli():
           lint -> [cppcheck]
 
         flags:
-          -
+          None
         """
     )

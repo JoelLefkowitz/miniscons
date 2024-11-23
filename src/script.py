@@ -7,15 +7,14 @@ from SCons.Environment import Environment
 class Script:
     name: str
 
-    args: list[str | list[str]] = field(default_factory=list)
-    prefix: list[str | list[str]] = field(default_factory=list)
+    cmd: list[str | list[str]] = field(default_factory=list)
 
     def __repr__(self) -> str:
         return self.name
 
     @property
     def action(self) -> str:
-        return " ".join(flatten([*self.prefix, self.name, *self.args]))
+        return " ".join(flatten(self.cmd))
 
     def register(self, env: Environment) -> None:
         alias = env.Alias(self.name, [], self.action)

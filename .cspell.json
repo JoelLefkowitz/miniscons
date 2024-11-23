@@ -43,6 +43,8 @@
     "miniscons",
     "mypy",
     "opengraph",
+    "pinst",
+    "postpack",
     "psutil",
     "pycache",
     "pylint",

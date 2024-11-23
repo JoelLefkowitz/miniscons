@@ -19,7 +19,9 @@ class Tasks:
     @property
     def cli(self) -> str:
         sections = [
-            ":".join([k, "".join([f"\n  {i}" for i in v] if len(v) > 0 else "\n  -")])
+            ":".join(
+                [k, "".join([f"\n  {i}" for i in v] if len(v) > 0 else "\n  None")]
+            )
             for k, v in self.__dict__.items()
         ]
 

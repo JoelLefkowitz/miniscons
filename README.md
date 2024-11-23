@@ -26,10 +26,10 @@ builds: build
 targets: start -> build
   test -> tests
 
-scripts: clang-tidy
-  cppclean
+scripts: tidy
+  clean
 
-routines: lint -> [clang-tidy, cppclean]
+routines: lint -> [tidy, clean]
 
 flags: --dump
 ```
@@ -90,13 +90,21 @@ Add the scripts to invoke your tooling:
 from miniscons import Script
 from walkmate import tree
 
-cppclean = Script("cppclean", ["."])
-
 includes = tests.packages["CPPPATH"]
+
+clean = Script(
+    "cppclean",
+    ["cppclean", "."],
+)
 
 tidy = Script(
     "clang-tidy",
-    [tree("src", r"\.(cpp)$"), "--", [f"-I{i}" for i in includes]],
+    [
+        "clang-tidy",
+        tree("src", r"\.(cpp)$"),
+        "--",
+        [f"-I{i}" for i in includes],
+    ],
 )
 ```
 
@@ -105,7 +113,7 @@ Add the routines and flags for your interface:
 ```py
 from miniscons import Flag, Routine
 
-lint = Routine("lint", [cppclean, tidy])
+lint = Routine("lint", [clean, tidy])
 
 dump = Flag("--dump")
 ```
@@ -119,7 +127,7 @@ from SCons.Script.Main import GetOption
 cli = Tasks(
     [build, tests],
     [start, test],
-    [tidy, cppclean],
+    [tidy, clean],
     [lint],
     [dump],
 )
@@ -147,10 +155,10 @@ builds: build
 targets: start -> build
   test -> tests
 
-scripts: clang-tidy
-  cppclean
+scripts: tidy
+  clean
 
-routines: lint -> [clang-tidy, cppclean]
+routines: lint -> [tidy, clean]
 
 flags: --dump
 ```

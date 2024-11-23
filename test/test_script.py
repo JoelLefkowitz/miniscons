@@ -2,8 +2,7 @@ from src.script import Script
 
 
 def test_action():
-    clang_format = Script("clang-format", ["-i", ["main.cpp", "main.hpp"]])
-    assert clang_format.action == "clang-format -i main.cpp main.hpp"
-
-    cspell = Script("cspell", [".", "--dot", "--gitignore"], ["npx"])
-    assert cspell.action == "npx cspell . --dot --gitignore"
+    lint = Script(
+        "lint", ["clang-tidy", ["main.cpp", "feature.cpp"], "--", "-I/includes"]
+    )
+    assert lint.action == "clang-tidy main.cpp feature.cpp -- -I/includes"

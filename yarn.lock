@@ -1039,6 +1039,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pinst@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "pinst@npm:3.0.0"
+  bin:
+    pinst: bin.js
+  checksum: 10c0/abb1ed62ea2acb2207a7a860715bdb26ecbde74ede8fad5f6200194f3e22db25e2b7a49af05e5cc7fc05384709c651e0000323f0077d7239060c4b68c8acd428
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^3.0.0":
   version: 3.2.5
   resolution: "prettier@npm:3.2.5"
@@ -1089,6 +1098,7 @@ __metadata:
   dependencies:
     cspell: "npm:^8.0.0"
     husky: "npm:^9.0.0"
+    pinst: "npm:^3.0.0"
     prettier: "npm:^3.0.0"
   languageName: unknown
   linkType: soft
