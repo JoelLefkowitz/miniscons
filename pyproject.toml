@@ -85,7 +85,7 @@ src = "miniscons"
 lint = [
     "npx cspell . --dot --gitignore",
     "pylint src --disable=C0114,C0115,C0116,C0411,C3001",
-    "mypy -m src --ignore-missing-import",
+    "mypy src --ignore-missing-import",
     "trufflehog3",
 ]
 

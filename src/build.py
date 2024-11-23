@@ -31,7 +31,10 @@ class Build:
         return f"{root.replace('.', '-')}-[{self.name}]"
 
     def merge(self, env: Environment) -> dict[str, list[str]]:
-        merged = {k: unique(env[k] + self.packages.get(k, [])) for k in SCONS_FLAGS}
+        merged = {
+            k: unique(env.get(k, []) + self.packages.get(k, [])) for k in SCONS_FLAGS
+        }
+
         merged["CXXFLAGS"] += self.flags
         return merged
 
