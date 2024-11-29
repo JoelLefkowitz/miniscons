@@ -2,7 +2,7 @@
 
 SCons builders.
 
-![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/miniscons/review.yml)
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/miniscons/review.yaml)
 ![Version](https://img.shields.io/pypi/v/miniscons)
 ![Downloads](https://img.shields.io/pypi/dw/miniscons)
 ![Quality](https://img.shields.io/codacy/grade/97f4a968fe554186b58c2f49903a09f4)
@@ -19,19 +19,24 @@ When writing an `SConstruct.py` configuration it is difficult to:
 
 We can use `miniscons` to keep the `SConstruct.py` file short and get an interface like this:
 
-```yml
-builds: build
+```yaml
+builds:
+  build
   tests
 
-targets: start -> build
+targets:
+  start -> build
   test -> tests
 
-scripts: tidy
+scripts:
+  tidy
   clean
 
-routines: lint -> [tidy, clean]
+routines:
+  lint -> [tidy, clean]
 
-flags: --dump
+flags:
+  --dump
 ```
 
 ## Installing
@@ -146,21 +151,26 @@ scons --dump
 
 We get our interface:
 
-```yml
+```yaml
 scons: Reading SConscript files ...
 
-builds: build
+builds:
+  build
   tests
 
-targets: start -> build
+targets:
+  start -> build
   test -> tests
 
-scripts: tidy
+scripts:
+  tidy
   clean
 
-routines: lint -> [tidy, clean]
+routines:
+  lint -> [tidy, clean]
 
-flags: --dump
+flags:
+  --dump
 ```
 
 ## Discussion

@@ -9,7 +9,7 @@ from SCons.Script import SConscript
 def conan(
     defines: list[str] | None = None,
     source: str = "SConscript_conandeps",
-) -> tuple[Environment, list[str]]:
+) -> Environment:
     if defines is None:
         defines = []
 
