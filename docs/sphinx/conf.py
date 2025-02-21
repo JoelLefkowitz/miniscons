@@ -6,7 +6,7 @@ from walkmate import tree
 
 project = "Miniscons"
 package = "miniscons"
-version = "0.12.0"
+version = "0.13.0"
 
 project_copyright = f"{date.today().year} Joel Lefkowitz"
 
